@@ -24,3 +24,10 @@ class ImageProcessor:
         if intensity > 0:
             k = intensity * 2 + 1
             self.image = cv2.GaussianBlur(self.image, (k, k), 0)
+
+    def edge_detection(self):
+        gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        edges = cv2.Canny(gray, 100, 200)
+        self.image = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
+
+ 
