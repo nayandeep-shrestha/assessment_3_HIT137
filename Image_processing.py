@@ -33,3 +33,15 @@ class ImageProcessor:
     def adjust_brightness(self, value):
         self.image = cv2.convertScaleAbs(self.image, beta=value)
 
+    def adjust_contrast(self, value):
+        self.image = cv2.convertScaleAbs(self.image, alpha=value)
+
+    def rotate(self, angle):
+        if angle == 90:
+            self.image = cv2.rotate(self.image, cv2.ROTATE_90_CLOCKWISE)
+        elif angle == 180:
+            self.image = cv2.rotate(self.image, cv2.ROTATE_180)
+        elif angle == 270:
+            self.image = cv2.rotate(self.image, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
+    
