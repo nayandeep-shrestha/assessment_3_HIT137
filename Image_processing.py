@@ -16,4 +16,6 @@ class ImageProcessor:
     def reset_to_original(self):
         self.image = self.original_image.copy()
 
-    
+    def to_grayscale(self):
+        gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        self.image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
