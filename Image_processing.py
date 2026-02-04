@@ -30,4 +30,6 @@ class ImageProcessor:
         edges = cv2.Canny(gray, 100, 200)
         self.image = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
 
- 
+    def adjust_brightness(self, value):
+        self.image = cv2.convertScaleAbs(self.image, beta=value)
+
