@@ -19,3 +19,8 @@ class ImageProcessor:
     def to_grayscale(self):
         gray = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
         self.image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+    
+    def blur(self, intensity):
+        if intensity > 0:
+            k = intensity * 2 + 1
+            self.image = cv2.GaussianBlur(self.image, (k, k), 0)
