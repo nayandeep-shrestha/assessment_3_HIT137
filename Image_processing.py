@@ -44,4 +44,9 @@ class ImageProcessor:
         elif angle == 270:
             self.image = cv2.rotate(self.image, cv2.ROTATE_90_COUNTERCLOCKWISE)
 
-    
+    def flip(self, mode):
+        if mode == "horizontal":
+            self.image = cv2.flip(self.image, 1)
+        else:
+            self.image = cv2.flip(self.image, 0)
+
