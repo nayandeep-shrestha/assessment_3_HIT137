@@ -12,3 +12,8 @@ class ImageProcessor:
         self.original_image = cv2.imread(path)
         self.image = self.original_image.copy()
         self.filename = os.path.basename(path)
+
+    def reset_to_original(self):
+        self.image = self.original_image.copy()
+
+    
