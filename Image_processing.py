@@ -1,9 +1,8 @@
 import cv2
 import os
 
-class ImageProcessor:
+class ImageProcessor:  
     def __init__(self):
-    
         self.original_image = None
         self.image= None
         self.filename = None
