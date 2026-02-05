@@ -105,7 +105,7 @@ class ImageEditorApp:
     
     def save_image(self):
         if self.processor.image is not None:
-            cv2.imwrite(self.processor.filename, self.processor.image)
+            cv2.imwrite(self.processor.filepath, self.processor.image)
             messagebox.showinfo("Save Image", "Image saved successfully!")
         else:
             messagebox.showwarning("Save Image", "No image to save.")
