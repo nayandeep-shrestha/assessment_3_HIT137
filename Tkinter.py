@@ -115,3 +115,16 @@ class ImageEditorApp:
         if path:
             cv2.imwrite(path, self.processor.image)
             messagebox.showinfo("Save Image", "Image saved successfully!")
+    
+    # ---------------- EDIT OPERATIONS ---------------- #
+    def undo(self):
+        self.processor.image = self.history.undo(self.processor.image)
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+        self.reset_sliders()
+    
+    def redo(self):
+        self.processor.image = self.history.redo(self.processor.image)
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+        self.reset_sliders()
