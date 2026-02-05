@@ -128,3 +128,42 @@ class ImageEditorApp:
         self.processor.original_image = self.processor.image.copy()
         self.update_display()
         self.reset_sliders()
+
+    # -------------- IMAGE TRANSFORMATIONS ---------------- #
+    def apply_grayscale(self):
+        self.history.save(self.processor.image) 
+        self.processor.to_grayscale()
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+    
+    def apply_edges(self):
+        self.history.save(self.processor.image)
+        self.processor.edge_detection()
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+
+    def rotate(self, angle):
+        self.history.save(self.processor.image)
+        self.processor.rotate(angle)
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+
+    def flip(self, mode):
+        self.history.save(self.processor.image)
+        self.processor.flip(mode)
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+
+    def resize(self, scale):
+        self.history.save(self.processor.image)
+        self.processor.resize(scale)
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+
+# ======================================================
+# Program Entry Point
+# ======================================================
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ImageEditorApp(root)
+    root.mainloop()
