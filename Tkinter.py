@@ -160,6 +160,20 @@ class ImageEditorApp:
         self.processor.original_image = self.processor.image.copy()
         self.update_display()
 
+    # -------------- Slider Operations ---------------- #
+    def preview_adjustments(self, _):
+        self.processor.reset_to_original()
+        self.processor.blur(self.blur_slider.get())
+        self.processor.adjust_brightness(self.brightness_slider.get())
+        self.processor.adjust_contrast(self.contrast_slider.get())
+        self.update_display()
+    
+    def commit_adjustments(self):
+        self.history.save(self.processor.image)
+        self.processor.original_image = self.processor.image.copy()
+        self.update_display()
+        messagebox.showinfo("Adjustments Applied", "Adjustments have been applied to the image.")
+
 # ======================================================
 # Program Entry Point
 # ======================================================
