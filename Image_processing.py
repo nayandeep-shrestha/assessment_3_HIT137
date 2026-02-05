@@ -10,6 +10,7 @@ class ImageProcessor:
     def load_image(self, path):
         self.original_image = cv2.imread(path)
         self.image = self.original_image.copy()
+        self.filepath = path
         self.filename = os.path.basename(path)
 
     def reset_to_original(self):
@@ -49,3 +50,22 @@ class ImageProcessor:
         else:
             self.image = cv2.flip(self.image, 0)
 
+    def resize(self, scale):
+        height, width = self.image.shape[:2]
+
+        #Calculate new dimensions
+        new_width = int(width * scale)
+        new_height = int(height * scale)
+
+        #Select interpolation method
+        if scale < 1:
+            interpolation = cv2.INTER_AREA
+        else:
+            interpolation = cv2.INTER_CUBIC
+
+        #Resizing the image
+        self.image = cv2.resize(
+            self.image,
+            (new_width, new_height),
+            interpolation=interpolation
+        )
