@@ -1,6 +1,8 @@
-import tkinter as tk
 from Image_processing import ImageProcessor
 from Image_History import ImageHistory
+
+import tkinter as tk
+from tkinter import filedialog, messagebox
 import cv2
 from PIL import Image, ImageTk
 
@@ -91,3 +93,25 @@ class ImageEditorApp:
         self.blur_slider.set(0)
         self.brightness_slider.set(0)
         self.contrast_slider.set(1)
+
+    # ---------------- FILE OPERATIONS ---------------- #
+    def open_image(self):
+        path = filedialog.askopenfilename(filetypes=[("Images", "*.png;*.jpg;*.jpeg;*.bmp")])
+        if path:
+            self.processor.load_image(path)
+            self.history.save(self.processor.image)
+            self.update_display()
+            self.reset_sliders()
+    
+    def save_image(self):
+        if self.processor.image is not None:
+            cv2.imwrite(self.processor.filename, self.processor.image)
+            messagebox.showinfo("Save Image", "Image saved successfully!")
+        else:
+            messagebox.showwarning("Save Image", "No image to save.")
+    
+    def save_as(self):
+        path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png"), ("JPEG files", "*.jpg;*.jpeg"), ("BMP files", "*.bmp")])
+        if path:
+            cv2.imwrite(path, self.processor.image)
+            messagebox.showinfo("Save Image", "Image saved successfully!")
